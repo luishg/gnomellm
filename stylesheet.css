@@ -108,13 +108,34 @@
     margin: 4px 0;
 }
 
-/* Chat View */
+/* Chat Container and View */
+.gnomellm-chat-container {
+    x_expand: true;
+    y_expand: true;
+    spacing: 0;
+}
+
 .gnomellm-chat-view {
     padding: 8px;
+    x_expand: true;
+    y_expand: true;
+    /* Ensure smooth scrolling behavior */
+    vscrollbar_policy: automatic;
+    hscrollbar_policy: never;
 }
 
 .gnomellm-chat-box {
     spacing: 16px;
+    x_expand: true;
+    /* Ensure content flows properly */
+    y_expand: false;
+}
+
+.gnomellm-bottom-spacer {
+    min-height: 20px;
+    x_expand: true;
+    /* Remove y_expand to prevent layout issues */
+    y_expand: false;
 }
 
 /* Message Bubbles */
@@ -151,6 +172,7 @@
 .gnomellm-message-text {
     color: #f0f0f0;
     font-size: 1.0em;
+    line-height: 1.4;
 }
 
 /* Markdown specific styles */
@@ -170,8 +192,10 @@
     padding: 10px;
     color: #98fb98; /* Pale green for code block text */
     -shell-parse-markup: true;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
-
 
 /* Input Area */
 .gnomellm-input-layout {
@@ -221,11 +245,12 @@
     color: #f5f5f5;
 }
 
-/* Scrollbar styling */
+/* Improved Scrollbar styling */
 .gnomellm-chat-view StScrollBar {
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 4px;
+    width: 12px;
 }
 
 .gnomellm-chat-view StScrollBar StBin#trough {
@@ -234,11 +259,16 @@
 
 .gnomellm-chat-view StScrollBar StBin#vhandle {
     background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+    border-radius: 6px;
+    min-height: 30px;
 }
 
 .gnomellm-chat-view StScrollBar StBin#vhandle:hover {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.gnomellm-chat-view StScrollBar StBin#vhandle:active {
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* Popup Menu for model selector */
@@ -335,66 +365,84 @@
     animation: slideUp 300ms ease-out;
 }
 
-/* Scrollbar styling */
-.gnomellm-chat-scroll StScrollBar {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    width: 8px;
-    min-height: 20px;
-}
-
-.gnomellm-chat-scroll StScrollBar StButton {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-    border: none;
-}
-
-.gnomellm-chat-scroll StScrollBar StButton:hover {
-    background: rgba(255, 255, 255, 0.4);
-}
-
 /* Responsive design */
 @media (max-width: 800px) {
     .gnomellm-container {
-        min-width: 400px;
-        padding: 12px;
+        width: 95vw;
+        height: 90vh;
+        margin: 2.5vh 2.5vw;
     }
-    
+
     .gnomellm-user-message {
-        margin-left: 20px;
+        max-width: 90%;
     }
-    
+
     .gnomellm-assistant-message {
-        margin-right: 20px;
+        max-width: 90%;
     }
 }
 
-/* Code blocks and markdown elements */
+/* Enhanced code block styling */
 .gnomellm-code-block {
-    background: rgba(0, 0, 0, 0.3);
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-    font-size: 13px;
-    color: #F8F8F2;
-    margin: 4px 0;
+    border-radius: 8px;
+    padding: 12px;
+    color: #98fb98;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-x: auto;
+    line-height: 1.4;
 }
 
 .gnomellm-light .gnomellm-code-block {
-    background: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
     border-color: rgba(0, 0, 0, 0.1);
-    color: #333333;
+    color: #2d3748;
 }
 
 .gnomellm-inline-code {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    padding: 2px 4px;
-    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    color: #87ceeb;
+    font-size: 0.9em;
 }
 
 .gnomellm-light .gnomellm-inline-code {
-    background: rgba(0, 0, 0, 0.08);
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #2d3748;
+}
+
+/* Text selection styling */
+.gnomellm-message-text:selected {
+    background-color: rgba(135, 206, 235, 0.3);
+    color: #ffffff;
+}
+
+/* Focus indicators for accessibility */
+.gnomellm-input-entry:focus {
+    border: 2px solid rgba(135, 206, 235, 0.5);
+    border-radius: 8px;
+}
+
+.gnomellm-send-button:focus {
+    border: 2px solid rgba(135, 206, 235, 0.5);
+}
+
+/* Smooth transitions for better UX */
+.gnomellm-message-container {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.gnomellm-message-box {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.gnomellm-message-box:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 } 
