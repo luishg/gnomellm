@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnomellm">
+  <schema id="org.gnome.shell.extensions.gnomellm" path="/org/gnome/shell/extensions/gnomellm/">
+    
+    <!-- Ollama Configuration -->
+    <key name="ollama-url" type="s">
+      <default>"http://localhost:11434"</default>
+      <summary>Ollama Server URL</summary>
+      <description>The URL where Ollama server is running</description>
+    </key>
+    
+    <key name="current-model" type="s">
+      <default>"llama3.2"</default>
+      <summary>Current LLM Model</summary>
+      <description>The currently selected Ollama model for chat</description>
+    </key>
+    
+    <key name="available-models" type="as">
+      <default>["llama3.2"]</default>
+      <summary>Available Models</summary>
+      <description>List of available Ollama models</description>
+    </key>
+    
+    <!-- UI Configuration -->
+    <key name="chat-hotkey" type="as">
+      <default>["&lt;Super&gt;&lt;Shift&gt;space"]</default>
+      <summary>Chat Hotkey</summary>
+      <description>Keyboard shortcut to open chat window</description>
+    </key>
+    
+    <key name="theme" type="s">
+      <default>"auto"</default>
+      <summary>Theme</summary>
+      <description>UI theme: auto, light, or dark</description>
+    </key>
+    
+    <key name="font-size" type="i">
+      <default>14</default>
+      <summary>Font Size</summary>
+      <description>Chat font size in pixels</description>
+    </key>
+    
+    <key name="transparency" type="d">
+      <default>0.95</default>
+      <summary>Window Transparency</summary>
+      <description>Chat window transparency (0.0-1.0)</description>
+    </key>
+    
+    <!-- Chat Configuration -->
+    <key name="user-name" type="s">
+      <default>"User"</default>
+      <summary>User Name</summary>
+      <description>Display name for user messages</description>
+    </key>
+    
+    <key name="assistant-name" type="s">
+      <default>"Assistant"</default>
+      <summary>Assistant Name</summary>
+      <description>Display name for assistant messages</description>
+    </key>
+    
+    <key name="header-text" type="s">
+      <default>"GnomeLLM Chat"</default>
+      <summary>Header Text</summary>
+      <description>Text displayed in chat window header</description>
+    </key>
+    
+    <key name="sidebar-mode" type="b">
+      <default>false</default>
+      <summary>Sidebar Mode</summary>
+      <description>Keep chat window in sidebar mode</description>
+    </key>
+    
+    <key name="stream-response" type="b">
+      <default>true</default>
+      <summary>Stream Response</summary>
+      <description>Enable streaming response (token by token)</description>
+    </key>
+    
+    <!-- Window State -->
+    <key name="window-width" type="i">
+      <default>600</default>
+      <summary>Window Width</summary>
+      <description>Chat window width in pixels</description>
+    </key>
+    
+    <key name="window-height" type="i">
+      <default>500</default>
+      <summary>Window Height</summary>
+      <description>Chat window height in pixels</description>
+    </key>
+    
+  </schema>
+</schemalist> 

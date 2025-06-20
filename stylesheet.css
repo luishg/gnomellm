@@ -1,0 +1,335 @@
+/* stylesheet.css - GnomeLLM Extension Styles */
+
+/* General Window Styling */
+.gnomellm-chat-window {
+    background-color: rgba(20, 20, 25, 0.85);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    color: #eeeeee;
+    padding: 8px;
+    width: 600px;
+    height: 700px;
+}
+
+.gnomellm-main-layout {
+    spacing: 8px;
+}
+
+/* Header */
+.gnomellm-header {
+    padding: 8px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+}
+
+.gnomellm-header-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #f5f5f5;
+}
+
+.gnomellm-model-selector {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 6px 12px;
+    color: #e0e0e0;
+    transition-duration: 200ms;
+}
+
+.gnomellm-model-selector:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.gnomellm-separator {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 1px;
+    margin: 4px 0;
+}
+
+/* Chat View */
+.gnomellm-chat-view {
+    padding: 8px;
+}
+
+.gnomellm-chat-box {
+    spacing: 16px;
+}
+
+/* Message Bubbles */
+.gnomellm-message-container {
+    spacing: 4px;
+}
+
+.gnomellm-user-message-container {
+    /* Align user messages to the right */
+    horizontal-align: end;
+}
+
+.gnomellm-assistant-message-container {
+    /* Align assistant messages to the left */
+    horizontal-align: start;
+}
+
+.gnomellm-message-box {
+    padding: 12px 16px;
+    border-radius: 20px;
+    max-width: 85%;
+}
+
+.gnomellm-user-message-box {
+    background-color: #3c3c7a; /* A pleasant blue for the user */
+    border-bottom-right-radius: 5px;
+}
+
+.gnomellm-assistant-message-box {
+    background-color: #3a3a3d; /* A neutral gray for the assistant */
+    border-bottom-left-radius: 5px;
+}
+
+.gnomellm-message-text {
+    color: #f0f0f0;
+    font-size: 1.0em;
+}
+
+/* Markdown specific styles */
+.gnomellm-inline-code {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-family: monospace;
+    color: #87ceeb; /* Sky blue for code */
+}
+
+.gnomellm-code-block {
+    font-family: monospace;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    color: #98fb98; /* Pale green for code block text */
+    -shell-parse-markup: true;
+}
+
+
+/* Input Area */
+.gnomellm-input-layout {
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    spacing: 8px;
+}
+
+.gnomellm-input-entry {
+    background-color: transparent;
+    border: none;
+    color: #f5f5f5;
+    font-size: 1.1em;
+    padding: 8px;
+    caret-color: #87ceeb; /* Matching sky blue caret */
+}
+
+.gnomellm-send-button {
+    background-color: #3c3c7a;
+    border: none;
+    border-radius: 14px;
+    padding: 8px;
+    transition-duration: 200ms;
+}
+
+.gnomellm-send-button:hover {
+    background-color: #4a4a9c;
+}
+
+.gnomellm-send-button:active,
+.gnomellm-send-button:checked {
+    background-color: #2e2e5a;
+}
+
+.gnomellm-send-button:disabled {
+    background-color: #555;
+}
+
+.gnomellm-send-icon {
+    icon-size: 20px;
+    color: #f5f5f5;
+}
+
+/* Scrollbar styling */
+.gnomellm-chat-view StScrollBar {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.gnomellm-chat-view StScrollBar StBin#trough {
+    background-color: transparent;
+}
+
+.gnomellm-chat-view StScrollBar StBin#vhandle {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.gnomellm-chat-view StScrollBar StBin#vhandle:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Popup Menu for model selector */
+.popup-menu-content {
+    background-color: rgba(40, 40, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+
+.popup-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Light theme */
+.gnomellm-light .gnomellm-chat-window {
+    background: rgba(250, 250, 250, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.gnomellm-light .gnomellm-title,
+.gnomellm-light .gnomellm-message-content {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.gnomellm-light .gnomellm-model-label {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.gnomellm-light .gnomellm-welcome-message {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.gnomellm-light .gnomellm-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.gnomellm-light .gnomellm-input-area {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.gnomellm-light .gnomellm-input-entry {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.9);
+    caret-color: rgba(0, 0, 0, 0.9);
+}
+
+.gnomellm-light .gnomellm-input-entry:focus {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.gnomellm-light .gnomellm-input-entry StLabel.hint-text {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.gnomellm-light .gnomellm-message-content {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.gnomellm-light .gnomellm-user-message .gnomellm-message-content {
+    background: rgba(74, 158, 255, 0.08);
+    border-color: rgba(74, 158, 255, 0.15);
+}
+
+.gnomellm-light .gnomellm-assistant-message .gnomellm-message-content {
+    background: rgba(0, 216, 132, 0.08);
+    border-color: rgba(0, 216, 132, 0.15);
+}
+
+/* Dark theme explicit overrides */
+.gnomellm-dark .gnomellm-chat-window {
+    background: rgba(30, 30, 30, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.gnomellm-chat-window {
+    animation: fadeIn 200ms ease-out;
+}
+
+.gnomellm-message {
+    animation: slideUp 300ms ease-out;
+}
+
+/* Scrollbar styling */
+.gnomellm-chat-scroll StScrollBar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    width: 8px;
+    min-height: 20px;
+}
+
+.gnomellm-chat-scroll StScrollBar StButton {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    border: none;
+}
+
+.gnomellm-chat-scroll StScrollBar StButton:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 800px) {
+    .gnomellm-container {
+        min-width: 400px;
+        padding: 12px;
+    }
+    
+    .gnomellm-user-message {
+        margin-left: 20px;
+    }
+    
+    .gnomellm-assistant-message {
+        margin-right: 20px;
+    }
+}
+
+/* Code blocks and markdown elements */
+.gnomellm-code-block {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: #F8F8F2;
+    margin: 4px 0;
+}
+
+.gnomellm-light .gnomellm-code-block {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+.gnomellm-inline-code {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+    font-size: 12px;
+}
+
+.gnomellm-light .gnomellm-inline-code {
+    background: rgba(0, 0, 0, 0.08);
+} 
