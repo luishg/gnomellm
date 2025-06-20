@@ -168,9 +168,16 @@ export default class GnomeLLMExtension extends Extension {
                 });
             }
             
-            // Simplified approach: always try to open the window
-            log('Opening chat window...');
-            this._chatWindow.open();
+            // Check if window is currently visible and toggle accordingly
+            const isVisible = this._chatWindow.get_parent() && this._chatWindow.visible;
+            
+            if (isVisible) {
+                log('Chat window is visible, closing it');
+                this._chatWindow.close();
+            } else {
+                log('Chat window not visible, opening it');
+                this._chatWindow.open();
+            }
             
         } catch (error) {
             logError('Failed to show chat window:', error);
