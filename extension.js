@@ -51,7 +51,7 @@ class GnomeLLMIndicator extends PanelMenu.Button {
         
         // Create panel icon
         this.add_child(new St.Icon({
-            icon_name: 'face-smile-symbolic',
+            icon_name: 'emoji-people-symbolic',
             style_class: 'system-status-icon',
         }));
         
