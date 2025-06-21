@@ -310,6 +310,38 @@ export default class GnomeLLMPreferences extends ExtensionPreferences {
 
         hotkeyGroup.add(hotkeyRow);
         
+        const aboutGroup = new Adw.PreferencesGroup({
+            title: _('About'),
+        });
+        page.add(aboutGroup);
+
+        const versionRow = new Adw.ActionRow({
+            title: _('Version'),
+        });
+        
+        let version = 'N/A';
+        try {
+            version = this.metadata.version.toString();
+        } catch (e) {
+            logError('Could not determine extension version.', e);
+        }
+
+        versionRow.add_suffix(new Gtk.Label({
+            label: version,
+            valign: Gtk.Align.CENTER,
+        }));
+        aboutGroup.add(versionRow);
+
+        const authorRow = new Adw.ActionRow({
+            title: _('Author'),
+        });
+        authorRow.add_suffix(new Gtk.LinkButton({
+            label: 'https://github.com/luishg/',
+            uri: 'https://github.com/luishg/',
+            valign: Gtk.Align.CENTER,
+        }));
+        aboutGroup.add(authorRow);
+
         log('Preferences window loaded successfully');
     }
 }

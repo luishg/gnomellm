@@ -13,8 +13,8 @@
     "47",
     "48"
   ],
-  "version": 1,
-  "url": "https://github.com/gnomellm/gnomellm",
+  "version": 0.1,
+  "url": "https://github.com/luishg/gnomellm",
   "settings-schema": "org.gnome.shell.extensions.gnomellm",
   "gettext-domain": "gnomellm"
 } 
