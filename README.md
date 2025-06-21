@@ -1,6 +1,6 @@
-# GnomeLLM - Chat with Local LLMs from GNOME Desktop
+# GnomeLLM - Chat with Ollama Local LLMs from GNOME Desktop
 
-A modern GNOME Shell extension that provides seamless access to local LLM models through Ollama directly from your desktop. Features a beautiful, semi-transparent chat interface similar to macOS Spotlight.
+A modern GNOME Shell extension that provides seamless access to local LLM models through Ollama directly from your desktop.
 
 By Luis Hernandez @luishg
 
