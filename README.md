@@ -1,274 +1,146 @@
-# GnomeLLM - Chat with Ollama Local LLMs from GNOME Desktop
+# GnomeLLM
 
-A modern GNOME Shell extension that provides seamless access to local LLM models through Ollama directly from your desktop.
+A GNOME Shell extension for quick access to local large language models via Ollama, right from your desktop.
 
-By Luis Hernandez @luishg
+By Luis Hernandez ([@luishg on Twitter](https://twitter.com/luishg) | [Website](https://www.luishg.com) | [GitHub](https://github.com/luishg))
 
-![GnomeLLM Screenshot](https://via.placeholder.com/800x500/2d3748/ffffff?text=GnomeLLM+Chat+Interface)
+![GnomeLLM Screenshot](https://raw.githubusercontent.com/luishg/gnomellm/main/screenshot.png)
 
-## 🚀 Features
+## Features
 
-### Core Functionality
-- **🤖 Ollama Integration**: Chat with any Ollama model (Llama3, Phi3, Mistral, Gemma, etc.)
-- **⌨️ Global Hotkey**: Quick access with customizable keyboard shortcut (default: Super+Shift+Space)
-- **🎯 Quick Access**: Panel icon for instant chat access
-- **🔄 Model Switching**: Easy on-the-fly model switching
-- **💬 Conversation History**: Persistent chat sessions
+- **Direct Ollama Integration**: Chat with any model managed by your local Ollama instance (Llama3, Phi-3, Gemma, etc.).
+- **Global Hotkey**: Open the chat window from anywhere with a customizable keyboard shortcut.
+- **Panel Indicator**: A simple icon in the top panel for quick mouse access.
+- **On-the-Fly Model Switching**: Change the active LLM directly from the chat window header.
+- **Markdown Rendering**: Responses are properly formatted, with support for code blocks, lists, and text styles.
+- **Streaming Responses**: Get real-time, token-by-token answers from the model.
+- **Settings Panel**: A straightforward panel to configure the extension, server, and appearance.
 
-### Modern Interface
-- **✨ Semi-transparent Design**: Beautiful blur effects and modern styling
-- **🌓 Theme Support**: Auto, Light, and Dark themes
-- **📱 Responsive Layout**: Adapts to different screen sizes
-- **🎨 Customization**: Font size, transparency, user names, and more
-- **📍 Flexible Positioning**: Centered or sidebar mode
+## Requirements
 
-### Advanced Features
-- **📝 Markdown Support**: Proper formatting for code blocks, lists, and emphasis
-- **⚡ Token Streaming**: Real-time response generation
-- **🔧 Settings Panel**: Comprehensive configuration options
-- **🎛️ Multiple Models**: Automatic model detection and management
+- **GNOME Shell**: Version 40 through 45.
+- **Ollama**: A running instance of the Ollama server.
+- **A modern Linux distribution** with GNOME.
 
-## 📋 Requirements
+## Installation
 
-- **GNOME Shell**: 40, 41, 42, 43, 44, or 45
-- **Ollama**: Running locally (usually on `localhost:11434`)
-- **Linux Distribution**: Any modern Linux distro with GNOME
-
-### Supported LLM Models
-- Llama 3.2, 3.1, 3, 2
-- Phi-3 (Mini, Small, Medium)
-- Mistral 7B, Mixtral 8x7B
-- Gemma 2B, 7B
-- CodeLlama variants
-- Any other Ollama-compatible model
-
-## 🛠️ Installation
-
-### Method 1: Quick Install Script
+### Quick Install Script
+This is the recommended method for most users.
 ```bash
 # Clone the repository
-git clone https://github.com/gnomellm/gnomellm.git
+git clone https://github.com/luishg/gnomellm.git
 cd gnomellm
 
-# Run the install script
+# Run the installation script
 chmod +x install.sh
 ./install.sh
 ```
 
-### Method 2: Manual Installation
+### Manual Installation
+For those who prefer a manual setup.
 ```bash
-# Create extension directory
+# Create the extension directory
 mkdir -p ~/.local/share/gnome-shell/extensions/gnomellm@localhost
 
 # Copy extension files
-cp -r * ~/.local/share/gnome-shell/extensions/gnomellm@localhost/
+cp -r . ~/.local/share/gnome-shell/extensions/gnomellm@localhost/
 
-# Compile GSettings schema
+# Compile the GSettings schema
 glib-compile-schemas ~/.local/share/gnome-shell/extensions/gnomellm@localhost/schemas/
 
-# Restart GNOME Shell (Alt+F2, type 'r', press Enter)
-# Or logout/login
+# Restart GNOME Shell (Press Alt+F2, type 'r', and press Enter) or log out and back in.
 
-# Enable the extension
+# Enable the extension via the Extensions app or command line
 gnome-extensions enable gnomellm@localhost
 ```
 
-### Method 3: Development Setup
+## Setup and Configuration
+
+1.  **Install and Run Ollama**: Follow the instructions at [ollama.ai](https://ollama.ai) to install the server.
+2.  **Pull a Model**: Open a terminal and run `ollama pull llama3` (or any other model you prefer).
+3.  **Configure the Extension**:
+    - Open the extension's settings via the panel indicator's context menu.
+    - Ensure the **Server URL** is correct (usually `http://localhost:11434`).
+    - Use the **Test** button to confirm the connection.
+    - Click **Refresh** to detect your pulled models.
+    - Select a default model from the dropdown.
+
+## Usage
+
+- **Open the Chat Window**: Use the panel icon or your configured hotkey.
+- **Send a Message**: Type your prompt and press `Enter`. Use `Shift+Enter` for new lines.
+- **Switch Models**: Click the model name in the chat header to open the selector. A new chat will start when you switch models.
+- **Start a New Chat**: Click the "New Chat" button in the header.
+- **Close**: Press `Escape`, click the `X` button, or click outside the window.
+
+## Configuration Options
+
+- **Server URL**: The endpoint for your Ollama server.
+- **Current Model**: Your default model for new conversations.
+- **Theme**: Dark theme is enabled by default. Light theme support is currently in development.
+- **Hotkey**: Set a custom keyboard shortcut to toggle the chat window.
+- **Header Text**: Customize the title of the chat window.
+- **Stream Response**: Toggle real-time streaming of model responses.
+
+## Troubleshooting
+
+### Extension Not Loading or Errors
+Check for logs to diagnose the issue.
 ```bash
-# Clone and setup for development
-git clone https://github.com/gnomellm/gnomellm.git
-cd gnomellm
-
-# Install in development mode
-make install-dev
-
-# View logs for debugging
-make logs
-```
-
-## ⚙️ Setup & Configuration
-
-### 1. Install and Start Ollama
-```bash
-# Install Ollama (see https://ollama.ai)
-curl -fsSL https://ollama.ai/install.sh | sh
-
-# Start Ollama service
-ollama serve
-
-# Pull a model (in another terminal)
-ollama pull llama3.2
-ollama pull phi3
-```
-
-### 2. Configure GnomeLLM
-1. **Open Settings**: Right-click the panel icon → Settings
-2. **Set Ollama URL**: Usually `http://localhost:11434`
-3. **Test Connection**: Click "Test" button to verify connectivity
-4. **Refresh Models**: Click "Refresh" to load available models
-5. **Select Model**: Choose your preferred model from the dropdown
-6. **Customize Interface**: Adjust theme, font size, transparency, etc.
-
-### 3. Set Hotkey (Optional)
-- In Settings → Interface → Chat Hotkey
-- Click the hotkey button and press your desired key combination
-- Default: `Super+Shift+Space`
-
-## 🎮 Usage
-
-### Opening the Chat
-- **Panel Icon**: Click the smile icon in the top panel
-- **Hotkey**: Press your configured hotkey combination
-- **Menu**: Right-click panel icon → Open Chat
-
-### Chat Interface
-- **Type & Send**: Type your message and press Enter
-- **New Line**: Use Shift+Enter for multi-line input
-- **Model Switch**: Click the model name in the header to cycle through models
-- **Clear Chat**: Click the clear icon to start fresh
-- **Sidebar Mode**: Click the dual-pane icon to dock to the side
-- **Close**: Click X, press Escape, or click outside
-
-### Model Management
-- Models are automatically detected from your Ollama installation
-- Use the dropdown in settings or click the model name in chat to switch
-- Refresh the models list if you install new ones
-
-## 🔧 Configuration Options
-
-### Ollama Settings
-- **Server URL**: Ollama server endpoint (default: `http://localhost:11434`)
-- **Current Model**: Active LLM model for conversations
-- **Available Models**: Auto-detected list of installed models
-
-### Interface Settings
-- **Theme**: Auto (system), Light, or Dark
-- **Font Size**: 8-24px for chat text
-- **Transparency**: 0.1-1.0 (transparent to opaque)
-- **Hotkey**: Customizable keyboard shortcut
-
-### Chat Settings
-- **User Name**: Display name for your messages
-- **Assistant Name**: Display name for AI responses
-- **Header Text**: Custom title for the chat window
-- **Stream Response**: Enable/disable token-by-token streaming
-- **Sidebar Mode**: Keep chat docked to the side
-
-## 🎨 Themes & Customization
-
-### Built-in Themes
-- **Auto Theme**: Follows system preference
-- **Light Theme**: Clean, bright interface
-- **Dark Theme**: Modern dark interface with blue accents
-
-### Custom Styling
-The extension uses CSS classes for easy customization:
-```css
-/* Main window */
-.gnomellm-chat-window { }
-
-/* Messages */
-.gnomellm-user-message { }
-.gnomellm-assistant-message { }
-
-/* Input area */
-.gnomellm-input-entry { }
-.gnomellm-send-button { }
-```
-
-## 🔍 Troubleshooting
-
-### Extension Not Loading
-```bash
-# Check extension status
+# See if the extension is enabled
 gnome-extensions list --enabled | grep gnomellm
 
-# Enable manually
-gnome-extensions enable gnomellm@localhost
-
-# Check for errors
+# View GNOME Shell logs
 journalctl -f -o cat /usr/bin/gnome-shell
 ```
 
 ### Ollama Connection Issues
 ```bash
-# Check if Ollama is running
+# Check if the Ollama server is running and accessible
 curl http://localhost:11434/api/tags
 
-# Start Ollama if not running
+# If not running, start it
 ollama serve
-
-# Check firewall/port access
-ss -tulpn | grep 11434
 ```
 
-### Model Not Responding
-1. Verify model is pulled: `ollama list`
-2. Test model directly: `ollama run llama3.2 "Hello"`
-3. Check Ollama logs: `ollama logs`
-4. Restart Ollama service
+## Development
 
-### Performance Issues
-- **Reduce Model Size**: Use smaller models (7B instead of 70B)
-- **Adjust Streaming**: Disable streaming for slower systems
-- **Lower Transparency**: Reduce blur effects
-- **Close Other Apps**: Free up system resources
+The project is structured for straightforward development. Key files include:
 
-## 🧩 Development
+-   `extension.js`: Main extension entry point.
+-   `prefs.js`: Settings UI.
+-   `lib/chatWindow.js`: The core chat interface logic.
+-   `lib/ollamaClient.js`: The client for the Ollama API.
+-   `stylesheet.css`: All UI styling.
 
-### Project Structure
-```
-gnomellm/
-├── extension.js          # Main extension entry point
-├── prefs.js             # Settings/preferences UI
-├── metadata.json        # Extension metadata
-├── stylesheet.css       # UI styles and themes
-├── schemas/             # GSettings configuration schema
-├── lib/                 # Core modules
-│   ├── chatWindow.js    # Chat interface logic
-│   ├── ollamaClient.js  # Ollama API client
-│   └── markdownRenderer.js # Markdown formatting
-├── install.sh           # Installation script
-├── Makefile            # Development utilities
-└── README.md           # This file
-```
-
-### Building & Testing
+### Development Commands
 ```bash
-# Install in development mode
+# Install with a symbolic link for live development
 make install-dev
 
-# View real-time logs
+# View real-time logs from the extension
 make logs
 
-# Package for distribution
+# Create a distributable package
 make package
-
-# Clean build artifacts
-make clean
 ```
 
-### Contributing
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and test thoroughly
-4. Commit with clear messages: `git commit -m "Add feature X"`
-5. Push and create a Pull Request
+Contributions are welcome! Please fork the repository, create a feature branch, and submit a pull request.
 
-## 📄 License
+## License
 
-This project is licensed under the GPL-2.0-or-later License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL-2.0-or-later.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- **Ollama Team** - For creating an amazing local LLM platform
-- **GNOME Project** - For the excellent desktop environment and extension APIs
-- **LLM Communities** - For developing incredible open-source models
+- The **Ollama Team** for their fantastic work on local LLM serving.
+- The **GNOME Project** for a powerful and extensible desktop environment.
+- The open-source AI community.
 
 ## 🔗 Links
 
-- **Repository**: https://github.com/gnomellm/gnomellm
-- **Issues**: https://github.com/gnomellm/gnomellm/issues
+- **Repository**: https://github.com/luishg/gnomellm
+- **Issues**: https://github.com/luishg/gnomellm/issues
 - **Ollama**: https://ollama.ai
 - **GNOME Extensions**: https://extensions.gnome.org
 
