@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Extension details
-EXTENSION_UUID="gnomellm@localhost"
+EXTENSION_UUID="GnomeLLM@luishg.github.io"
 EXTENSION_NAME="GnomeLLM"
 EXTENSIONS_DIR="$HOME/.local/share/gnome-shell/extensions"
 EXTENSION_DIR="$EXTENSIONS_DIR/$EXTENSION_UUID"
@@ -204,7 +204,7 @@ show_instructions() {
     echo "5. 💬 Start chatting: Click panel icon or use Super+Shift+Space"
     echo
     echo "Troubleshooting:"
-    echo "- Check extension status: gnome-extensions list --enabled | grep gnomellm"
+    echo "- Check extension status: gnome-extensions list --enabled | grep '$EXTENSION_UUID'"
     echo "- View logs: journalctl -f -o cat /usr/bin/gnome-shell"
     echo "- Extension directory: $EXTENSION_DIR"
     echo
