@@ -110,6 +110,7 @@ copy_extension_files() {
         "prefs.js"
         "metadata.json"
         "stylesheet.css"
+        "COPYING"
     )
     
     # Copy main files
@@ -127,6 +128,7 @@ copy_extension_files() {
     local dirs=(
         "lib"
         "schemas"
+        "assets"
     )
     
     for dir in "${dirs[@]}"; do

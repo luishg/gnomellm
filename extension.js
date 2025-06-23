@@ -50,8 +50,10 @@ class GnomeLLMIndicator extends PanelMenu.Button {
         log('Creating panel indicator...');
         
         // Create panel icon
+        const iconPath = this._extension.path + '/assets/GnomeLLM_icon.png';
+        const iconFile = Gio.File.new_for_path(iconPath);
         this.add_child(new St.Icon({
-            icon_name: 'emoji-people-symbolic',
+            gicon: new Gio.FileIcon({ file: iconFile }),
             style_class: 'system-status-icon',
         }));
         

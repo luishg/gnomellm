@@ -12,6 +12,7 @@ DEV_EXTENSION_DIR = $(EXTENSIONS_DIR)/$(DEV_EXTENSION_UUID)
 SOURCES = extension.js prefs.js metadata.json stylesheet.css COPYING
 SCHEMA_FILES = schemas/org.gnome.shell.extensions.gnomellm.gschema.xml
 LIB_FILES = lib/chatWindow.js lib/ollamaClient.js lib/markdownRenderer.js
+ASSET_FILES = assets/GnomeLLM_icon.png
 
 # Build directory
 BUILD_DIR = build
@@ -26,7 +27,7 @@ all: help
 install:
 	@echo "Installing GnomeLLM extension..."
 	@mkdir -p $(DEV_EXTENSION_DIR)
-	@cp -r $(SOURCES) lib schemas $(DEV_EXTENSION_DIR)/
+	@cp -r $(SOURCES) lib schemas assets $(DEV_EXTENSION_DIR)/
 	@glib-compile-schemas $(DEV_EXTENSION_DIR)/schemas/
 	@echo "Installation complete. Please restart GNOME Shell."
 
@@ -58,7 +59,7 @@ clean:
 package: clean
 	@echo "Creating distribution package with UUID: $(EXTENSION_UUID)"
 	@mkdir -p $(BUILD_DIR)/$(EXTENSION_UUID)
-	@cp -r $(SOURCES) lib schemas $(BUILD_DIR)/$(EXTENSION_UUID)/
+	@cp -r $(SOURCES) lib schemas assets $(BUILD_DIR)/$(EXTENSION_UUID)/
 	@# The gschemas.compiled file is not needed in the package
 	@rm -f $(BUILD_DIR)/$(EXTENSION_UUID)/schemas/gschemas.compiled
 	@cd $(BUILD_DIR)/$(EXTENSION_UUID) && zip -r ../../$(PACKAGE_NAME) .
@@ -125,6 +126,13 @@ check:
 		fi; \
 	done
 	@for file in $(SCHEMA_FILES); do \
+		if [ -f $$file ]; then \
+			echo "✅ $$file"; \
+		else \
+			echo "❌ $$file (missing)"; \
+		fi; \
+	done
+	@for file in $(ASSET_FILES); do \
 		if [ -f $$file ]; then \
 			echo "✅ $$file"; \
 		else \

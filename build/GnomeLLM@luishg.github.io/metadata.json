@@ -8,6 +8,7 @@
   ],
   "version": 2,
   "url": "https://github.com/luishg/gnomellm",
+  "icon": "assets/GnomeLLM_icon.png",
   "settings-schema": "org.gnome.shell.extensions.gnomellm",
   "gettext-domain": "gnomellm",
   "license": "GPL-2.0-or-later"
