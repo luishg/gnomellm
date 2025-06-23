@@ -1,0 +1,14 @@
+{
+  "name": "GnomeLLM",
+  "description": "Chat with local LLMs through Ollama directly from your GNOME desktop",
+  "uuid": "GnomeLLM@luishg.github.io",
+  "shell-version": [
+    "45",
+    "46"
+  ],
+  "version": 2,
+  "url": "https://github.com/luishg/gnomellm",
+  "settings-schema": "org.gnome.shell.extensions.gnomellm",
+  "gettext-domain": "gnomellm",
+  "license": "GPL-2.0-or-later"
+} 

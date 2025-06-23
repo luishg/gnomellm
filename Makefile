@@ -1,13 +1,15 @@
 # Makefile for GnomeLLM Extension Development
 
 # Extension details
-EXTENSION_UUID = gnomellm@localhost
+EXTENSION_UUID = GnomeLLM@luishg.github.io
 EXTENSION_NAME = GnomeLLM
 EXTENSIONS_DIR = $(HOME)/.local/share/gnome-shell/extensions
-EXTENSION_DIR = $(EXTENSIONS_DIR)/$(EXTENSION_UUID)
+# Use a development-specific UUID for local installation to avoid conflicts
+DEV_EXTENSION_UUID = gnomellm@localhost
+DEV_EXTENSION_DIR = $(EXTENSIONS_DIR)/$(DEV_EXTENSION_UUID)
 
 # Source files
-SOURCES = extension.js prefs.js metadata.json stylesheet.css
+SOURCES = extension.js prefs.js metadata.json stylesheet.css COPYING
 SCHEMA_FILES = schemas/org.gnome.shell.extensions.gnomellm.gschema.xml
 LIB_FILES = lib/chatWindow.js lib/ollamaClient.js lib/markdownRenderer.js
 
@@ -23,25 +25,25 @@ all: help
 # Install extension (production)
 install:
 	@echo "Installing GnomeLLM extension..."
-	@mkdir -p $(EXTENSION_DIR)
-	@cp -r $(SOURCES) lib schemas $(EXTENSION_DIR)/
-	@glib-compile-schemas $(EXTENSION_DIR)/schemas/
+	@mkdir -p $(DEV_EXTENSION_DIR)
+	@cp -r $(SOURCES) lib schemas $(DEV_EXTENSION_DIR)/
+	@glib-compile-schemas $(DEV_EXTENSION_DIR)/schemas/
 	@echo "Installation complete. Please restart GNOME Shell."
 
 # Install extension (development mode with symlinks)
 install-dev:
 	@echo "Installing GnomeLLM extension in development mode..."
 	@mkdir -p $(EXTENSIONS_DIR)
-	@rm -rf $(EXTENSION_DIR)
-	@ln -sf $(PWD) $(EXTENSION_DIR)
-	@glib-compile-schemas $(EXTENSION_DIR)/schemas/
+	@rm -rf $(DEV_EXTENSION_DIR)
+	@ln -sf $(PWD) $(DEV_EXTENSION_DIR)
+	@glib-compile-schemas $(DEV_EXTENSION_DIR)/schemas/
 	@echo "Development installation complete."
-	@echo "Extension is symlinked to $(EXTENSION_DIR)"
+	@echo "Extension is symlinked to $(DEV_EXTENSION_DIR)"
 
 # Uninstall extension
 uninstall:
 	@echo "Uninstalling GnomeLLM extension..."
-	@rm -rf $(EXTENSION_DIR)
+	@rm -rf $(DEV_EXTENSION_DIR)
 	@echo "Uninstallation complete."
 
 # Clean build artifacts
@@ -54,11 +56,12 @@ clean:
 
 # Create distribution package
 package: clean
-	@echo "Creating distribution package..."
+	@echo "Creating distribution package with UUID: $(EXTENSION_UUID)"
 	@mkdir -p $(BUILD_DIR)/$(EXTENSION_UUID)
 	@cp -r $(SOURCES) lib schemas $(BUILD_DIR)/$(EXTENSION_UUID)/
-	@glib-compile-schemas $(BUILD_DIR)/$(EXTENSION_UUID)/schemas/
-	@cd $(BUILD_DIR) && zip -r ../$(PACKAGE_NAME) $(EXTENSION_UUID)
+	@# The gschemas.compiled file is not needed in the package
+	@rm -f $(BUILD_DIR)/$(EXTENSION_UUID)/schemas/gschemas.compiled
+	@cd $(BUILD_DIR)/$(EXTENSION_UUID) && zip -r ../../$(PACKAGE_NAME) .
 	@echo "Package created: $(PACKAGE_NAME)"
 
 # Show extension logs
@@ -79,21 +82,21 @@ restart:
 # Enable extension
 enable:
 	@echo "Enabling GnomeLLM extension..."
-	@gnome-extensions enable $(EXTENSION_UUID)
+	@gnome-extensions enable $(DEV_EXTENSION_UUID)
 	@echo "Extension enabled."
 
 # Disable extension
 disable:
 	@echo "Disabling GnomeLLM extension..."
-	@gnome-extensions disable $(EXTENSION_UUID)
+	@gnome-extensions disable $(DEV_EXTENSION_UUID)
 	@echo "Extension disabled."
 
 # Show extension status
 status:
 	@echo "Extension status:"
-	@gnome-extensions list --enabled | grep $(EXTENSION_UUID) && echo "✅ Enabled" || echo "❌ Disabled"
+	@gnome-extensions list --enabled | grep $(DEV_EXTENSION_UUID) && echo "✅ Enabled" || echo "❌ Disabled"
 	@echo "\nExtension info:"
-	@gnome-extensions info $(EXTENSION_UUID) 2>/dev/null || echo "Extension not found"
+	@gnome-extensions info $(DEV_EXTENSION_UUID) 2>/dev/null || echo "Extension not found"
 
 # Development workflow shortcuts
 dev-install: install-dev enable
