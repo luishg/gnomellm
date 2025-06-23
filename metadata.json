@@ -6,7 +6,7 @@
     "45",
     "46"
   ],
-  "version": 2,
+  "version": 3,
   "url": "https://github.com/luishg/gnomellm",
   "icon": "assets/GnomeLLM_icon.png",
   "settings-schema": "org.gnome.shell.extensions.gnomellm",

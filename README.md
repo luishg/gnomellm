@@ -4,7 +4,7 @@ A GNOME Shell extension for quick access to local large language models via Olla
 
 By Luis Hernandez ([@luishg on Twitter](https://twitter.com/luishg) | [Website](https://www.luishg.com) | [GitHub](https://github.com/luishg))
 
-![GnomeLLM Screenshot](https://raw.githubusercontent.com/luishg/gnomellm/main/screenshot.png)
+![GnomeLLM Screenshot](assets/screenshot.png)
 
 ## Features
 
