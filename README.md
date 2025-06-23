@@ -28,7 +28,7 @@ By Luis Hernandez ([@luishg on Twitter](https://twitter.com/luishg) | [Website](
 This is the recommended method for most users.
 ```bash
 # Clone the repository
-git clone https://github.com/luishg/gnomellm.git
+git clone https://github.com/luishg/gnomellm.git -b main
 cd gnomellm
 
 # Run the installation script
@@ -39,19 +39,22 @@ chmod +x install.sh
 ### Manual Installation
 For those who prefer a manual setup.
 ```bash
+# Set the UUID from metadata.json
+UUID="GnomeLLM@luishg.github.io"
+
 # Create the extension directory
-mkdir -p ~/.local/share/gnome-shell/extensions/gnomellm@localhost
+mkdir -p ~/.local/share/gnome-shell/extensions/$UUID
 
 # Copy extension files
-cp -r . ~/.local/share/gnome-shell/extensions/gnomellm@localhost/
+cp -r . ~/.local/share/gnome-shell/extensions/$UUID/
 
 # Compile the GSettings schema
-glib-compile-schemas ~/.local/share/gnome-shell/extensions/gnomellm@localhost/schemas/
+glib-compile-schemas ~/.local/share/gnome-shell/extensions/$UUID/schemas/
 
 # Restart GNOME Shell (Press Alt+F2, type 'r', and press Enter) or log out and back in.
 
 # Enable the extension via the Extensions app or command line
-gnome-extensions enable gnomellm@localhost
+gnome-extensions enable $UUID
 ```
 
 ## Setup and Configuration
@@ -148,8 +151,9 @@ This project is licensed under the GPL-2.0-or-later.
 
 | GNOME Shell | Status | Notes |
 |-------------|--------|-------|
-| 45.x        | ✅ Supported | Latest stable |
-| 44.x        | ✅ Supported | LTS version |
+| 46          | ✅ Supported | Latest version |
+| 45          | ✅ Supported | LTS version |
+| 44.x        | ✅ Supported | |
 | 43.x        | ✅ Supported | |
 | 42.x        | ✅ Supported | |
 | 41.x        | ✅ Supported | |
