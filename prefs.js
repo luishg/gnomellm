@@ -86,11 +86,8 @@ function _refreshModels(settings, modelRow, modelStore, button) {
         log(`Found ${modelNames.length} models: ${modelNames.join(', ')}`);
         settings.set_strv('available-models', modelNames);
 
-        // Clear the existing modelStore
-        if (modelStore.get_n_items() > 0) {
-            modelStore.splice(0, modelStore.get_n_items());
-        }
-        modelNames.forEach(name => modelStore.append(name));
+        // Update the modelStore by removing all existing items and adding the new ones
+        modelStore.splice(0, modelStore.get_n_items(), modelNames);
 
         const currentModel = settings.get_string('current-model');
         const newIndex = modelNames.indexOf(currentModel);
